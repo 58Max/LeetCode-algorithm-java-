@@ -1,0 +1,19 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    //it has two points when the fast point get end,the low point just go middle.
+    public ListNode middleNode(ListNode head) {
+      ListNode p = head,q = head;
+      while(p.next != null && p != null){
+          p = p.next.next;
+          q = q.next;
+      }
+      return q;
+    }
+}
