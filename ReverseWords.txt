@@ -1,0 +1,20 @@
+```
+将输入的字符串倒序输入
+public class ReverseWords {
+
+    public String reverseWords(String s){
+    	//去空格
+        s = s.trim();
+        //将其装换为 ArryList数组  ****重点 必须用"\\s+"当分隔符 意思是匹配任意空格符
+        List<String> list = Arrays.asList(s.split("\\s+"));
+        
+        //利用Collections的reverse方法转到
+        Collections.reverse(list);
+        
+        //String.join("",) 将数组转换为字符串并在每两个元素之间添加字符串
+        return String.join(" ",list);
+    }
+}
+```
+
+a good
