@@ -1,0 +1,90 @@
+#### [152. 乘积最大子数组](https://leetcode-cn.com/problems/maximum-product-subarray/)
+
+难度中等660
+
+给你一个整数数组 `nums` ，请你找出数组中乘积最大的连续子数组（该子数组中至少包含一个数字），并返回该子数组所对应的乘积。
+
+ 
+
+**示例 1:**
+
+```
+输入: [2,3,-2,4]
+输出: 6
+解释: 子数组 [2,3] 有最大乘积 6。
+```
+
+**示例 2:**
+
+```
+输入: [-2,0,-1]
+输出: 0
+解释: 结果不能为 2, 因为 [-2,-1] 不是子数组。
+```
+
+
+
+```java
+class Solution {
+    public int maxProduct(int[] nums) {
+
+        if(nums.length <= 1){
+            return nums[0];
+        }
+
+       
+       int maxres = nums[0];
+       int minres = nums[0];
+       int max58 = maxres;
+       int mf = 0;
+       int nf = 0;
+        for(int i = 1; i <nums.length;i++ ){
+          
+          mf = maxres;
+          nf= minres;
+          
+          maxres = max(mf*nums[i],max(nf*nums[i],nums[i]));
+          minres = min(mf*nums[i],min(nf*nums[i],nums[i]));
+         
+
+          max58 = max(max58,maxres);
+
+        }
+        
+        // return maxres;
+
+        return max58;
+    }
+
+     public static int max(int a,int b){
+
+        return a >= b ? a : b;
+
+    }
+
+    public static int min(int a, int b){
+        return a <= b? a : b;
+    }
+}
+```
+
+
+
+> 小结
+
+这个题我使用的是动态规划法，在算法上讲这个是比较简单的。
+
+因为每个数组下标位置的最大值==max(fmax(i-1)xi,fmin(i-1)xi,i)==
+
+这里需要最小值==min(fmax(i-1)xi,fmin(i-1)xi,i)==
+
+我之所以这个题做了很长时间是因为在这个位置
+
+==mf = maxres;==
+
+==nf= minres;==       
+
+ ==maxres = max(mf*nums[i],max(nf*nums[i],nums[i]));
+ minres = min(mf*nums[i],min(nf*nums[i],nums[i]));==
+
+  我没有使用mf,nf来接替maxres,和minres的值 所以造成实际参与运算的是当前下标的最大值
